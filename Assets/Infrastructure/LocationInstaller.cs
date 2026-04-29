@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Zenject;
+using Gameplay.Player;
 
 namespace Infrastructure
 {
@@ -10,7 +11,17 @@ namespace Infrastructure
         
         public override void InstallBindings()
         {
-            
+            BindPlayer();
+        }
+
+        private void BindPlayer()
+        {
+            Container
+                .Bind<Player>()
+                .FromComponentInNewPrefab(PlayerPrefab)
+                .UnderTransform(StartPoint)
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

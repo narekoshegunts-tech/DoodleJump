@@ -26,7 +26,7 @@ namespace Gameplay.Player.StateMachine
 
         private void Update()
         {
-            if (_currentState is PlayerRisingState && _rigidbody2D.velocity.y < 0)
+            if (_currentState is PlayerRisingState && _rigidbody2D.linearVelocity.y < 0)
             {
                 ChangeState(_fallingState);
             }
