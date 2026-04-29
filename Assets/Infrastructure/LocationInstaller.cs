@@ -1,11 +1,13 @@
+﻿using UnityEngine;
 using Zenject;
 
 namespace Infrastructure
 {
-    public class BootstrapInstaller : MonoInstaller
+    public class LocationInstaller : MonoInstaller
     {
+        public Transform StartPoint;
+        public GameObject PlayerPrefab;
         
-
         public override void InstallBindings()
         {
             
