@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.Camera;
+using UnityEngine;
 using Zenject;
 using Gameplay.Player;
 
@@ -8,7 +9,7 @@ namespace Infrastructure
     {
         public Transform StartPoint;
         public GameObject PlayerPrefab;
-        
+        // ReSharper disable Unity.PerformanceAnalysis
         public override void InstallBindings()
         {
             BindPlayer();

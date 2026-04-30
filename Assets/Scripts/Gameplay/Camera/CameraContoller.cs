@@ -7,7 +7,6 @@ namespace Gameplay.Camera
     {
         private Transform _playerTransform;
         
-        
         [Inject]
         private void Construct(Player.Player player)
         {
