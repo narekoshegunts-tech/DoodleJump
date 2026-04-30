@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 309445662821286762}
   - component: {fileID: 3277858875588749784}
   - component: {fileID: 1490321652838135524}
-  - component: {fileID: 1012057608607271648}
   - component: {fileID: 6605012476937986749}
   m_Layer: 0
   m_Name: Player
@@ -114,19 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Player.PlayerMover
   speed: 3
---- !u!114 &1012057608607271648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5771119333865188548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8411fb7b11f47b6ba47f83687f347e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Player.StateMachine.PlayerStateMachine
-  _jumpForce: 10
 --- !u!114 &6605012476937986749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0421872de21447c0b35e0a39b6e9cb1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Player.Player
+  _jumpForce: 10
 --- !u!1 &5866427308387856427
 GameObject:
   m_ObjectHideFlags: 0

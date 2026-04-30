@@ -9,7 +9,7 @@ namespace Infrastructure
     {
         public Transform StartPoint;
         public GameObject PlayerPrefab;
-        // ReSharper disable Unity.PerformanceAnalysis
+        
         public override void InstallBindings()
         {
             BindPlayer();
