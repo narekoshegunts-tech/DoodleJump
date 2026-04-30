@@ -34,6 +34,27 @@ namespace Gameplay.Platform
             Initialize();
         }
 
+        private void FixedUpdate()
+        {
+            MoveAllPlatformsUpAbroadScreen();
+        }
+
+        private void MoveAllPlatformsUpAbroadScreen()
+        {
+            foreach (var item in _pool)
+            {
+                if (_camera.WorldToViewportPoint(item.transform.position).y < 0)
+                {
+                    MovePlatformUp(item);
+                }
+            }
+        }
+
+        private void MovePlatformUp(GameObject platform)
+        {
+            platform.transform.position = GetSpawnPosition();
+        }
+
         private void Initialize()
         {
             Initialize(_platformPrefab);
