@@ -42,12 +42,11 @@ namespace Gameplay.Player
         {
             var direction = _input.Player.Move.ReadValue<Vector2>().x;
             
-            if ((direction > 0 && _lastDirection < 0) || 
-                (direction < 0 && _lastDirection > 0))
+            if ((direction > 0 && _lastDirection <= 0) || 
+                (direction < 0 && _lastDirection >= 0))
             {
                 ChangeDirection(direction);
             }
-            
             _lastDirection = direction;
         }
 
