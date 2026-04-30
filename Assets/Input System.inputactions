@@ -18,37 +18,26 @@
             ],
             "bindings": [
                 {
-                    "name": "1D Axis",
-                    "id": "c86af443-d52b-4410-9889-3aa0ca855a9e",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "8aaad203-f59c-4113-b45c-177670209ea9",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Move",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "4de63b1a-3aa2-4c66-8065-64fefccc3ea1",
-                    "path": "<Keyboard>/a",
+                    "name": "",
+                    "id": "e8204730-2f46-40e5-b935-9f6e67700874",
+                    "path": "<Touchscreen>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Move",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "14bbb400-63ce-40af-94c2-d9e09288a0c3",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }

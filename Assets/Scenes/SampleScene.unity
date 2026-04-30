@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Platform.PlatformSpawner
   _capacity: 20
-  _minDistanceBetweenPlatforms: 2
+  _minDistanceBetweenPlatforms: 0.5
   _maxDistanceBetweenPlatforms: 4
   _platformPrefab: {fileID: 8298504809100220179, guid: 76d840679fd4bfe4ea72e800580c9df3, type: 3}
 --- !u!1 &832575517
