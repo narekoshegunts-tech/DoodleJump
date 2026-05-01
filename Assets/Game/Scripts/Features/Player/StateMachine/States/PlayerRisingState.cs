@@ -12,7 +12,7 @@ namespace Game.Scripts.Features.Player.StateMachine.States
 
         public override void Enter()
         {
-            _rigidbody.linearVelocity = new Vector2(_rigidbody.linearVelocity.x, 0f);
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
     }
