@@ -10,12 +10,12 @@ namespace Game.Scripts.UI
     {
         private CanvasGroup _canvasGroup;
         [SerializeField] private Button _restartButton;
-        private Player _player;
+        private PlayerController _playerController;
 
         [Inject]
-        private void Construct(Player player)
+        private void Construct(PlayerController playerController)
         {
-            _player = player;
+            _playerController = playerController;
         }
 
         private void Awake()
@@ -32,13 +32,13 @@ namespace Game.Scripts.UI
         private void OnEnable()
         {
             _restartButton.onClick.AddListener(Restart);
-            _player.OnDie += Show;
+            _playerController.OnDeath += Show;
         }
 
         private void OnDisable()
         {
             _restartButton.onClick.RemoveListener(Restart);
-            _player.OnDie -= Show;
+            _playerController.OnDeath -= Show;
         }
 
         private void Show()
@@ -50,8 +50,8 @@ namespace Game.Scripts.UI
 
         private void Restart()
         {
-            SceneManager.LoadScene(0);
             Time.timeScale = 1;
+            SceneManager.LoadScene(0);
         }
     }
 }

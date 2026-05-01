@@ -1,4 +1,5 @@
 ﻿
+using Game.Scripts.Features.Player;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Platform
@@ -7,9 +8,9 @@ namespace Game.Scripts.Features.Platform
     {
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.TryGetComponent<Player.Player>(out var player))
+            if(collision.gameObject.TryGetComponent<PlayerController>(out var playerController))
             {
-                    player.CollidedWithPlatform();
+                    playerController.CollidedWithPlatform();
             }
         }
     }

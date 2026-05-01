@@ -1321,6 +1321,7 @@ GameObject:
   - component: {fileID: 1963898210}
   - component: {fileID: 1963898209}
   - component: {fileID: 1963898212}
+  - component: {fileID: 1963898213}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1340,8 +1341,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b365deb23e741a4bb51961fbf7c7afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Infrastructure.LocationInstaller
-  StartPoint: {fileID: 1703179519}
-  PlayerPrefab: {fileID: 5771119333865188548, guid: c35ac11cc39a69c4595ea404e804f539, type: 3}
+  _startPoint: {fileID: 1703179519}
+  _playerPrefab: {fileID: 5703674500019989519, guid: c35ac11cc39a69c4595ea404e804f539, type: 3}
 --- !u!114 &1963898210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,6 +1359,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 1963898209}
   - {fileID: 1963898212}
+  - {fileID: 1963898213}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1402,6 +1404,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8636c90958bd47a5b7b0f3b2176e9237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game.Installers::Game.Scripts.Installers.InputSystemInstaller
+  _inputActions: {fileID: -944628639613478452, guid: 47cd241460b235e45b9d3a6c6d2f4586, type: 3}
+--- !u!114 &1963898213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963898208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31dcea302b154d3da05dc0b818be1c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2116528233
 GameObject:
   m_ObjectHideFlags: 0

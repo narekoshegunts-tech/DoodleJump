@@ -2,9 +2,10 @@
 
 namespace Game.Scripts.Features.Player
 {
+    [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerVisual: MonoBehaviour
     {
-        [SerializeField] private PlayerMover _playerMover;
+        [SerializeField] private PlayerController _playerController;
         
         private SpriteRenderer _spriteRenderer;
 
@@ -13,9 +14,14 @@ namespace Game.Scripts.Features.Player
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            _playerMover.DirectionChanged += FlipVisual;
+            _playerController.OnDirectionChanged += FlipVisual;
+        }
+
+        private void OnDisable()
+        {
+            _playerController.OnDirectionChanged -= FlipVisual;
         }
 
         private void FlipVisual(float direction)
