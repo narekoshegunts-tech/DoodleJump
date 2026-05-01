@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Feature.Player;
+﻿using System.ComponentModel;
+using Game.Scripts.Features.Player;
 using UnityEngine;
 using Zenject;
 

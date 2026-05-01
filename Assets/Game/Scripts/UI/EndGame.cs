@@ -1,10 +1,10 @@
-using Game.Scripts.Feature.Player;
+using Game.Scripts.Features.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Game.Scripts.Core
+namespace Game.Scripts.UI
 {
     public class EndGame : MonoBehaviour
     {

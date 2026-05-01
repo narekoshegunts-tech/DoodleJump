@@ -1,8 +1,8 @@
 ﻿using System;
-using Game.Scripts.Feature.Player.StateMachine;
+using Game.Scripts.Features.Player.StateMachine;
 using UnityEngine;
 
-namespace Game.Scripts.Feature.Player
+namespace Game.Scripts.Features.Player
 {
     public class Player: MonoBehaviour
     {

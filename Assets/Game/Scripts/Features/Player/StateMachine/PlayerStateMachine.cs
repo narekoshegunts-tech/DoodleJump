@@ -1,8 +1,8 @@
 ﻿using System;
-using Game.Scripts.Feature.Player.StateMachine.States;
+using Game.Scripts.Features.Player.StateMachine.States;
 using UnityEngine;
 
-namespace Game.Scripts.Feature.Player.StateMachine
+namespace Game.Scripts.Features.Player.StateMachine
 {
     public class PlayerStateMachine
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Game.Scripts.Feature.Platform
+namespace Game.Scripts.Features.Platform
 {
     public class ObjectPool: MonoBehaviour
     {

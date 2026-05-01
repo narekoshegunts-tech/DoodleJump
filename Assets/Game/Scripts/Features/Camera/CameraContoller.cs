@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Feature.Camera
+namespace Game.Scripts.Features.Camera
 {
     public class CameraContoller: MonoBehaviour
     {

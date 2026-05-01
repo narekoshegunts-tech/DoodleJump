@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Scripts.Feature.Player.StateMachine.States
+namespace Game.Scripts.Features.Player.StateMachine.States
 {
     public abstract class State
     {

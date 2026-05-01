@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
-namespace Game.Scripts.Feature.Player
+namespace Game.Scripts.Features.Player
 {
     public class PlayerMover: MonoBehaviour
     {
@@ -15,10 +16,14 @@ namespace Game.Scripts.Feature.Player
         private float _minPositionX;
 
         public event Action<float> DirectionChanged;
-        
+
+        [Inject]
+        private void Construct(InputSystem input)
+        {
+            _input = input;
+        }
         private void Awake()
         {
-            _input = new InputSystem();
             _rigidbody = GetComponent<Rigidbody2D>();
             
             SetMinMaxPositionX();
