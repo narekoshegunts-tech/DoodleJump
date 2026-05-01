@@ -1,3 +1,4 @@
+using Game.Scripts.UI.Services;
 using TMPro;
 using UnityEngine;
 
@@ -5,8 +6,14 @@ namespace Game.Scripts.Core
 {
     public class ScoreViewer : MonoBehaviour
     {
-        [SerializeField] private TMP_Text scoreText;
+        [SerializeField] private TMP_Text _scoreText;
+        
+        private ScoreCounter _scoreCounter;
 
+        private void Awake()
+        {
+            _scoreCounter = new ScoreCounter();
+        }
         private void Update()
         {
             UpdateScore();
@@ -14,8 +21,8 @@ namespace Game.Scripts.Core
 
         private void UpdateScore()
         {
-            int roundedPositionY = (int)Camera.main.transform.position.y;
-            scoreText.text = roundedPositionY.ToString();
+            int roundedPositionY = _scoreCounter.GetScore();
+            _scoreText.text = roundedPositionY.ToString();
         }
     }
 }
