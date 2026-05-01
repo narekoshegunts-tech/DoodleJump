@@ -51,7 +51,7 @@ namespace Game.Scripts.Features.Player
 
         private void InitMovementService()
         {
-            _movementService.SetProperties(transform, _moveSpeed);
+            _movementService.SetProperties(transform, _rigidbody2D, _moveSpeed);
         }
         
         private void InitJumpService()

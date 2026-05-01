@@ -4,33 +4,59 @@ using UnityEngine;
 
 namespace Game.Scripts.Features.Platform
 {
-    public class ObjectPool: MonoBehaviour
+    public class ObjectPool
     {
         private GameObject _container;
-        [SerializeField] private int _capacity;
+        private int _capacity;
         
-        protected List<GameObject> _pool = new List<GameObject>();
+        private List<GameObject> _pool = new List<GameObject>();
 
-        protected virtual void Awake()
+        public ObjectPool(GameObject parent, int capacity)
         {
+            _capacity = capacity;
+            
             _container = new GameObject("ObjectPoolContainer");
-            _container.transform.SetParent(transform);
+            _container.transform.SetParent(parent.transform);
         }
 
-        protected void Initialize(GameObject prefab)
+        public void Initialize(GameObject prefab)
         {
             for (int i = 0; i < _capacity; i++)
             {
-                GameObject spawned = Instantiate(prefab, _container.transform);
+                GameObject spawned = Object.Instantiate(prefab, _container.transform);
                 _pool.Add(spawned);
                 spawned.SetActive(false);
             }
         }
 
-        protected bool TryGetObject(out GameObject result)
+        public bool TryGetObject(out GameObject result)
         {
-            result = _pool.FirstOrDefault(p => p.activeSelf == false);
-            return result != null;
+            for (int i = 0; i < _pool.Count; i++)
+            {
+                if (!_pool[i].activeSelf)
+                {
+                    result = _pool[i];
+                    return true;
+                }
+            }
+
+            result = null;
+            return false;
         }
+
+        public List<GameObject> ReturnObjectsLowerPosition(float position)
+        {
+            List<GameObject> result = new List<GameObject>();
+            foreach (var item in _pool)
+            {
+                if (item.transform.position.y <= position)
+                {
+                    result.Add(item);
+                }
+            }
+
+            return result;
+        }
+        
     }
 }

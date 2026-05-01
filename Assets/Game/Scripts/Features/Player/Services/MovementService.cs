@@ -11,7 +11,9 @@ namespace Game.Scripts.Features.Player.Services
         private ScreenBoundService _screenBoundService;
         
         private PlayerInputSystem _input;
+        
         private Transform _transform;
+        private Rigidbody2D _rigidbody2D;
 
         private float _speed;
         private float _minX;
@@ -25,13 +27,15 @@ namespace Game.Scripts.Features.Player.Services
         public void Construct(PlayerInputSystem input, ScreenBoundService screenBoundService)
         {
             _input = input;
+            
             _screenBoundService = screenBoundService;
             SetScreenBounds();
         }
 
-        public void SetProperties(Transform transform, float speed)
+        public void SetProperties(Transform transform, Rigidbody2D rigidbody2D, float speed)
         {
             _transform = transform;
+            _rigidbody2D = rigidbody2D;
             _speed = speed;
         }
 
@@ -61,7 +65,8 @@ namespace Game.Scripts.Features.Player.Services
 
         private void Move()
         {
-            _transform.Translate(Vector2.right * (_speed * _lastDirection * Time.deltaTime));
+            _rigidbody2D.velocity = new Vector2(_speed * _lastDirection, _rigidbody2D.velocity.y);
+            
             if (_transform.position.x > _maxX)
             {
                 _transform.position = new Vector2(_maxX, _transform.position.y);

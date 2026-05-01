@@ -1,51 +1,62 @@
-﻿using UnityEngine;
+﻿using System;
+using Game.Scripts.Infrastructure.CameraServices;
+using UnityEngine;
+using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Game.Scripts.Features.Platform
 {
-    public class PlatformSpawner: ObjectPool
+    public class PlatformSpawner: MonoBehaviour
     {
-        private UnityEngine.Camera _camera;
+        [Inject] private ScreenBoundService _screenBoundService;
 
         private float _rightEdgeX;
         private float _leftEdgeX;
-
-        [SerializeField] private float _minDistanceBetweenPlatforms;
-        [SerializeField] private float _maxDistanceBetweenPlatforms;
+        private float _downY;
+        
         private float _lastSpawnPositionY;
         
+        private PlatformPool _platformPool;
+        
+        [Header("SpawnSettings")]
         [SerializeField] private GameObject _platformPrefab;
+        [SerializeField] private float _minDistanceBetweenPlatforms;
+        [SerializeField] private float _maxDistanceBetweenPlatforms;
+        [SerializeField] private int _capacity;
 
-        protected override void Awake()
+        private float _platformWidth;
+
+        private void OnValidate()
         {
-            base.Awake();
-            _camera = UnityEngine.Camera.main;
-
-            if (_camera != null)
+            if (_minDistanceBetweenPlatforms > _maxDistanceBetweenPlatforms)
             {
-                _rightEdgeX = _camera.ViewportToWorldPoint(Vector3.right).x;
-                _leftEdgeX = _camera.ViewportToWorldPoint(Vector3.zero).x;
-                _lastSpawnPositionY = _camera.ViewportToWorldPoint(Vector3.zero).y - _minDistanceBetweenPlatforms;
+                _maxDistanceBetweenPlatforms = _minDistanceBetweenPlatforms;
             }
         }
 
         private void Start()
         {
+            _rightEdgeX = _screenBoundService.GetScreenBoundMaxPositionX();
+            _leftEdgeX = _screenBoundService.GetScreenBoundMinPositionX();
+            _downY = _screenBoundService.GetScreenBoundMinPositionY();
+            _lastSpawnPositionY = _downY - _minDistanceBetweenPlatforms;
+            
+            _platformWidth = _platformPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
+            
             Initialize();
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
-            MoveAllPlatformsUpAbroadScreen();
+            RecyclePlatformsBelowScreen();
         }
 
-        private void MoveAllPlatformsUpAbroadScreen()
+        private void RecyclePlatformsBelowScreen()
         {
-            foreach (var item in _pool)
+            _downY = _screenBoundService.GetScreenBoundMinPositionY();
+            foreach (var item in _platformPool.ReturnObjectsLowerPosition(_downY))
             {
-                if (_camera.WorldToViewportPoint(item.transform.position).y < 0)
-                {
-                    MovePlatformUp(item);
-                }
+                MovePlatformUp(item);
             }
         }
 
@@ -56,18 +67,23 @@ namespace Game.Scripts.Features.Platform
 
         private void Initialize()
         {
-            Initialize(_platformPrefab);
-            foreach (var item in _pool)
+            _platformPool = new PlatformPool(gameObject, _capacity);
+            _platformPool.Initialize(_platformPrefab);
+            for (int i = 0; i < _capacity; i++)
             {
-                var spawnPosition = GetSpawnPosition();
-                item.transform.position = spawnPosition;
-                item.gameObject.SetActive(true);
+                if (_platformPool.TryGetObject(out var platform))
+                {
+                    var spawnPosition = GetSpawnPosition();
+                    platform.transform.position = spawnPosition;
+                    platform.gameObject.SetActive(true);
+                }
             }
         }
 
         private Vector3 GetSpawnPosition()
         {
-            float positionX = Random.Range(_leftEdgeX, _rightEdgeX);
+            
+            float positionX = Random.Range(_leftEdgeX + _platformWidth / 2, _rightEdgeX - _platformWidth / 2);
             float positionY = Random.Range(_lastSpawnPositionY + _minDistanceBetweenPlatforms, _lastSpawnPositionY + _maxDistanceBetweenPlatforms);
             float positionZ = 0f;
             Vector3 spawnPosition = new Vector3(positionX, positionY, positionZ);

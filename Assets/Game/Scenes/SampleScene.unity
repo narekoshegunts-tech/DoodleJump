@@ -913,10 +913,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93fa5e27169a4523b8c8e6196ee2dc72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Platform.PlatformSpawner
-  _capacity: 20
+  _platformPrefab: {fileID: 8298504809100220179, guid: 76d840679fd4bfe4ea72e800580c9df3, type: 3}
   _minDistanceBetweenPlatforms: 0.5
   _maxDistanceBetweenPlatforms: 4
-  _platformPrefab: {fileID: 8298504809100220179, guid: 76d840679fd4bfe4ea72e800580c9df3, type: 3}
+  _capacity: 20
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1222,10 +1222,10 @@ RectTransform:
   - {fileID: 2116528234}
   m_Father: {fileID: 55932289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.33666667, y: 0.4245625}
-  m_AnchorMax: {x: 0.6657778, y: 0.5}
-  m_AnchoredPosition: {x: 1.6635132, y: -2.5567932}
-  m_SizeDelta: {x: 3.3269958, y: 5.113495}
+  m_AnchorMin: {x: 0.34147447, y: 0.14656737}
+  m_AnchorMax: {x: 0.6648431, y: 0.22462258}
+  m_AnchoredPosition: {x: -4.663513, y: 1.5}
+  m_SizeDelta: {x: 13.327026, y: 2.1135254}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944836065
 MonoBehaviour:
