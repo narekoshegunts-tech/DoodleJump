@@ -1,4 +1,5 @@
 using Game.Scripts.Features.Player;
+using Game.Scripts.UI.Services.Signals;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,12 +12,9 @@ namespace Game.Scripts.UI
         private CanvasGroup _canvasGroup;
         [SerializeField] private Button _restartButton;
         private PlayerController _playerController;
-
-        [Inject]
-        private void Construct(PlayerController playerController)
-        {
-            _playerController = playerController;
-        }
+        
+        [Inject] private SignalBus _signalBus;
+        
 
         private void Awake()
         {
@@ -31,27 +29,30 @@ namespace Game.Scripts.UI
 
         private void OnEnable()
         {
-            _restartButton.onClick.AddListener(Restart);
-            _playerController.OnDeath += Show;
+            _restartButton.onClick.AddListener(OnRestartClick);
         }
 
         private void OnDisable()
         {
-            _restartButton.onClick.RemoveListener(Restart);
-            _playerController.OnDeath -= Show;
+            _restartButton.onClick.RemoveListener(OnRestartClick);
         }
 
-        private void Show()
+        public void Show()
         {
             _canvasGroup.alpha = 1;
             _restartButton.interactable = true;
-            Time.timeScale = 0;
         }
 
-        private void Restart()
+        public void Hide()
         {
-            Time.timeScale = 1;
-            SceneManager.LoadScene(0);
+            _canvasGroup.alpha = 0f;
+            _restartButton.interactable = false;
+        }
+
+        private void OnRestartClick()
+        {
+            _signalBus.Fire<RestartRequestSignal>();
+            Hide();
         }
     }
 }

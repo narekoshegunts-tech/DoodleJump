@@ -1,5 +1,6 @@
 ﻿using System;
 using Game.Scripts.Features.Player.Services;
+using Game.Scripts.UI.Services.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,7 @@ namespace Game.Scripts.Features.Player
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController: MonoBehaviour
     {
+        [Inject] private SignalBus _signalBus;
         [SerializeField] private float _moveSpeed;
         [SerializeField] private float _jumpForce;
         
@@ -94,7 +96,7 @@ namespace Game.Scripts.Features.Player
         private void Die()
         {
             _isDead = true;
-            OnDeath?.Invoke();
+            _signalBus.Fire<PlayerDiedSignal>();
         }
 
         public void CollidedWithPlatform()
