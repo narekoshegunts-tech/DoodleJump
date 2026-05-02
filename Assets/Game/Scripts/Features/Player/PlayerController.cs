@@ -20,7 +20,6 @@ namespace Game.Scripts.Features.Player
         private Rigidbody2D _rigidbody2D;
 
         public event Action<float> OnDirectionChanged;
-        public event Action OnDeath;
         
         private bool _isDead = false;
         
