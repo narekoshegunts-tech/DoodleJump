@@ -7,6 +7,8 @@ namespace Game.Scripts.Infrastructure.Input
 {
     public class PlayerInputSystem: IInitializable, IDisposable
     {
+        private const string PlayerActionMapName = "Player";
+        private const string PlayerMoveActionName = "Move";
         [Inject] private InputActionAsset _asset;
         private InputActionMap _playerMap;
 
@@ -26,8 +28,8 @@ namespace Game.Scripts.Infrastructure.Input
         
         public void Initialize()
         {
-            _playerMap = _asset.FindActionMap("Player");
-            _moveAction = _playerMap.FindAction("Move");
+            _playerMap = _asset.FindActionMap(PlayerActionMapName);
+            _moveAction = _playerMap.FindAction(PlayerMoveActionName);
             
             _playerMap.Enable();
         }
