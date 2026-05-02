@@ -36,14 +36,20 @@ namespace Game.Scripts.Features.Platform
 
         private void Start()
         {
-            _rightEdgeX = _screenBoundService.GetScreenBoundMaxPositionX();
-            _leftEdgeX = _screenBoundService.GetScreenBoundMinPositionX();
+            SetScreenBounds();
+            
             _downY = _screenBoundService.GetScreenBoundMinPositionY();
             _lastSpawnPositionY = _downY - _minDistanceBetweenPlatforms;
             
             _platformWidth = _platformPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
             
             Initialize();
+        }
+
+        private void SetScreenBounds()
+        {
+            _rightEdgeX = _screenBoundService.GetScreenBoundMaxPositionX();
+            _leftEdgeX = _screenBoundService.GetScreenBoundMinPositionX();
         }
 
         private void Update()
@@ -82,7 +88,7 @@ namespace Game.Scripts.Features.Platform
 
         private Vector3 GetSpawnPosition()
         {
-            
+            SetScreenBounds();
             float positionX = Random.Range(_leftEdgeX + _platformWidth / 2, _rightEdgeX - _platformWidth / 2);
             float positionY = Random.Range(_lastSpawnPositionY + _minDistanceBetweenPlatforms, _lastSpawnPositionY + _maxDistanceBetweenPlatforms);
             float positionZ = 0f;
