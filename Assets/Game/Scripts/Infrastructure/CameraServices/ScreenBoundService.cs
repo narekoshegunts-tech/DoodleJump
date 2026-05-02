@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Infrastructure.CameraServices
 {
     public class ScreenBoundService
     {
-        private Camera _camera = Camera.main;
+        [Inject] private Camera _camera;
 
         public float GetScreenBoundMinPositionX()
         {
