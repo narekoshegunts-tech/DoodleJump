@@ -9,12 +9,11 @@ namespace Game.Scripts.Features.Platform
     public class PlatformSpawner: MonoBehaviour
     {
         [Inject] private ScreenBoundService _screenBoundService;
-
-        private float _rightEdgeX;
-        private float _leftEdgeX;
-        private float _downY;
         
-        private float _lastSpawnPositionY;
+        private RandomPlatformSpawnStrategy.Factory _spawnStrategyFactory;
+        private RandomPlatformSpawnStrategy _spawnStrategy;
+        
+        private float _downY;
         
         private PlatformPool _platformPool;
         
@@ -24,7 +23,11 @@ namespace Game.Scripts.Features.Platform
         [SerializeField] private float _maxDistanceBetweenPlatforms;
         [SerializeField] private int _capacity;
 
-        private float _platformWidth;
+        [Inject]
+        private void Construct(RandomPlatformSpawnStrategy.Factory randomPlatformSpawnStrategyFactory)
+        {
+            _spawnStrategyFactory = randomPlatformSpawnStrategyFactory;
+        }
 
         private void OnValidate()
         {
@@ -36,20 +39,14 @@ namespace Game.Scripts.Features.Platform
 
         private void Start()
         {
-            SetScreenBounds();
-            
             _downY = _screenBoundService.GetScreenBoundMinPositionY();
-            _lastSpawnPositionY = _downY - _minDistanceBetweenPlatforms;
             
-            _platformWidth = _platformPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
+            float platformWidth = _platformPrefab.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
+
+            _spawnStrategy = _spawnStrategyFactory.Create(_minDistanceBetweenPlatforms,
+                _maxDistanceBetweenPlatforms, platformWidth);
             
             Initialize();
-        }
-
-        private void SetScreenBounds()
-        {
-            _rightEdgeX = _screenBoundService.GetScreenBoundMaxPositionX();
-            _leftEdgeX = _screenBoundService.GetScreenBoundMinPositionX();
         }
 
         private void Update()
@@ -68,7 +65,7 @@ namespace Game.Scripts.Features.Platform
 
         private void MovePlatformUp(GameObject platform)
         {
-            platform.transform.position = GetSpawnPosition();
+            platform.transform.position = _spawnStrategy.GetSpawnPosition();
         }
 
         private void Initialize()
@@ -79,24 +76,11 @@ namespace Game.Scripts.Features.Platform
             {
                 if (_platformPool.TryGetObject(out var platform))
                 {
-                    var spawnPosition = GetSpawnPosition();
+                    var spawnPosition = _spawnStrategy.GetSpawnPosition();
                     platform.transform.position = spawnPosition;
                     platform.gameObject.SetActive(true);
                 }
             }
-        }
-
-        private Vector3 GetSpawnPosition()
-        {
-            SetScreenBounds();
-            float positionX = Random.Range(_leftEdgeX + _platformWidth / 2, _rightEdgeX - _platformWidth / 2);
-            float positionY = Random.Range(_lastSpawnPositionY + _minDistanceBetweenPlatforms, _lastSpawnPositionY + _maxDistanceBetweenPlatforms);
-            float positionZ = 0f;
-            Vector3 spawnPosition = new Vector3(positionX, positionY, positionZ);
-            
-            _lastSpawnPositionY = positionY;
-            
-            return spawnPosition;
         }
     }
 }
