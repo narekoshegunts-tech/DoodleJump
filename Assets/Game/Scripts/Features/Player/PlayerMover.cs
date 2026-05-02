@@ -22,9 +22,9 @@ namespace Game.Scripts.Features.Player
             _movementService = movementServiceFactory.Create(_rigidbody2D, transform, _moveSpeed);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-            _movementService.Update();
+            _movementService.FixedUpdate();
         }
 
         private void OnEnable()

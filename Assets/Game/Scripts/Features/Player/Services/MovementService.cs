@@ -44,7 +44,7 @@ namespace Game.Scripts.Features.Player.Services
             _maxX = _screenBoundService.GetScreenBoundMaxPositionX();
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
             CheckChangedDirection();
             Move();
