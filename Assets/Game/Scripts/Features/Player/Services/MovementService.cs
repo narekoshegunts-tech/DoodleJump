@@ -64,6 +64,8 @@ namespace Game.Scripts.Features.Player.Services
 
         private void Move()
         {
+            SetScreenBounds();
+            
             _rigidbody2D.velocity = new Vector2(_speed * _lastDirection, _rigidbody2D.velocity.y);
             
             if (_transform.position.x > _maxX)
