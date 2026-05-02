@@ -15,6 +15,11 @@ namespace Game.Scripts.Features.Player.Services
 
         private bool _isDead;
 
+        public DeathDetectorService(Transform transform)
+        {
+            _transform = transform;
+        }
+
         [Inject]
         private void Construct(ScreenBoundService screenBoundService)
         {
@@ -25,11 +30,6 @@ namespace Game.Scripts.Features.Player.Services
         public void SetMinPosition()
         {
             _minPositionY = _screenBoundService.GetScreenBoundMinPositionY();
-        }
-
-        public void SetProperties(Transform transform)
-        {
-            _transform = transform;
         }
 
         public void Update()
@@ -48,6 +48,10 @@ namespace Game.Scripts.Features.Player.Services
         {
             _isDead = true;
             OnDeath?.Invoke();
+        }
+
+        public class Factory : PlaceholderFactory<Transform, DeathDetectorService>
+        {
         }
         
     }

@@ -7,7 +7,7 @@ using Zenject;
 namespace Game.Scripts.Features.Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerController: MonoBehaviour
+    public class PlayerDeathDetector: MonoBehaviour
     {
         [Inject] private SignalBus _signalBus;
         
@@ -18,23 +18,12 @@ namespace Game.Scripts.Features.Player
         private bool _isFalling => _rigidbody2D.velocity.y < 0;
         
         [Inject]
-        private void Construct(DeathDetectorService deathDetectorServiceService)
+        private void Construct(DeathDetectorService.Factory deathDetectorServiceServiceFactory)
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
 
-            _deathDetectorService = deathDetectorServiceService;
+            _deathDetectorService = deathDetectorServiceServiceFactory.Create(transform);
         }
-
-        private void Start()
-        {
-            InitDeathDetectorService();
-        }
-
-        private void InitDeathDetectorService()
-        {
-            _deathDetectorService.SetProperties(transform);
-        }
-        
         
         private void Update()
         {

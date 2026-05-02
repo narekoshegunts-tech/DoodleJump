@@ -11,7 +11,7 @@ namespace Game.Scripts.UI
     {
         private CanvasGroup _canvasGroup;
         [SerializeField] private Button _restartButton;
-        private PlayerController _playerController;
+        private PlayerDeathDetector _playerController;
         
         [Inject] private SignalBus _signalBus;
         

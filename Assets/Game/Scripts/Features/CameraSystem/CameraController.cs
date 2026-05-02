@@ -9,7 +9,7 @@ namespace Game.Scripts.Features.CameraSystem
         private Transform _playerTransform;
         
         [Inject]
-        private void Construct(PlayerController player)
+        private void Construct(PlayerDeathDetector player)
         {
             _playerTransform = player.transform;
         }

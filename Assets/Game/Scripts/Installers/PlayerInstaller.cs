@@ -9,36 +9,31 @@ namespace Game.Scripts.Installers
     public class PlayerInstaller : MonoInstaller
     {
         [SerializeField] private Transform _startPoint;
-        [SerializeField] private PlayerController _playerPrefab;
+        [SerializeField] private PlayerDeathDetector _playerPrefab;
         
         
         public override void InstallBindings()
         {
             BindPlayer();
-            BindPlayerServices();
+            BindPlayerServicesFactories();
         }
 
-        private void BindPlayerServices()
+        private void BindPlayerServicesFactories()
         {
             Container
                 .BindFactory<Rigidbody2D, Transform, float, MovementService,  MovementService.Factory>();
             
             Container
                 .BindFactory<Rigidbody2D, float, JumpService, JumpService.Factory>();
-            
-            // Container
-            //     .Bind<JumpService>()
-            //     .AsTransient();
 
             Container
-                .Bind<DeathDetectorService>()
-                .AsTransient();
+                .BindFactory<Transform, DeathDetectorService, DeathDetectorService.Factory>();
         }
 
         private void BindPlayer()
         { 
             Container
-                .Bind<PlayerController>()
+                .Bind<PlayerDeathDetector>()
                 .FromComponentInNewPrefab(_playerPrefab)
                 .UnderTransform(_startPoint)
                 .AsSingle()
