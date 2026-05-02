@@ -1,6 +1,7 @@
 using Game.Scripts.UI.Services;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Core
 {
@@ -8,12 +9,8 @@ namespace Game.Scripts.Core
     {
         [SerializeField] private TMP_Text _scoreText;
         
-        private ScoreCounter _scoreCounter;
-
-        private void Awake()
-        {
-            _scoreCounter = new ScoreCounter();
-        }
+        [Inject] private ScoreCounter _scoreCounter;
+        
         private void Update()
         {
             UpdateScore();

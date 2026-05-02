@@ -1,19 +1,15 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.UI.Services
 {
     public class ScoreCounter
     {
-        private Camera _camera;
-
-        public ScoreCounter()
-        {
-            _camera = Camera.main;
-        }
+        [Inject] private Camera _camera;
 
         public int GetScore()
         {
-            return Mathf.FloorToInt(_camera.transform.position.y);
+            return Mathf.FloorToInt(_camera.gameObject.transform.position.y);
         }
     }
 }

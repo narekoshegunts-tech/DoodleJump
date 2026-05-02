@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Features.Common;
 using Game.Scripts.UI;
+using Game.Scripts.UI.Services;
 using Game.Scripts.UI.Services.Signals;
 using Zenject;
 
@@ -12,7 +13,6 @@ namespace Game.Scripts.Installers
             InstallSignalBus();
             DeclareSignals();
             BindPauseService();
-            BindEndGameUI();
             BindGameFlowController();
         }
 
@@ -25,14 +25,6 @@ namespace Game.Scripts.Installers
         private void InstallSignalBus()
         {
             SignalBusInstaller.Install(Container);
-        }
-
-        private void BindEndGameUI()
-        {
-            Container
-                .Bind<EndGame>()
-                .FromComponentInHierarchy()
-                .AsSingle();
         }
 
         private void BindPauseService()
