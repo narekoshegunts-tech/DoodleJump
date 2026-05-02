@@ -1,4 +1,4 @@
-﻿namespace Game.Scripts.UI.Services.Signals
+﻿namespace Game.Scripts.Signals
 {
     public class RestartRequestSignal
     {

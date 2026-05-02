@@ -1,6 +1,5 @@
-﻿using System;
-using Game.Scripts.Features.Player.Services;
-using Game.Scripts.UI.Services.Signals;
+﻿using Game.Scripts.Features.Player.Services;
+using Game.Scripts.Signals;
 using UnityEngine;
 using Zenject;
 

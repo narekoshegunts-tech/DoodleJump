@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Core
+namespace Game.Scripts.UI
 {
     public class ScoreViewer : MonoBehaviour
     {

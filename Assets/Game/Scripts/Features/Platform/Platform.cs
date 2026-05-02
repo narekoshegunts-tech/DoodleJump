@@ -1,5 +1,4 @@
-﻿
-using Game.Scripts.Features.Player;
+﻿using Game.Scripts.Features.Player;
 using UnityEngine;
 
 namespace Game.Scripts.Features.Platform

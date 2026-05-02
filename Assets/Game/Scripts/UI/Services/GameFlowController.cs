@@ -1,11 +1,9 @@
 ﻿using System;
-using Game.Scripts.UI;
-using Game.Scripts.UI.Services;
-using Game.Scripts.UI.Services.Signals;
+using Game.Scripts.Signals;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace Game.Scripts.Features.Common
+namespace Game.Scripts.UI.Services
 {
     public class GameFlowController: IInitializable, IDisposable
     {

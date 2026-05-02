@@ -1,7 +1,6 @@
 using Game.Scripts.Features.Player;
-using Game.Scripts.UI.Services.Signals;
+using Game.Scripts.Signals;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
