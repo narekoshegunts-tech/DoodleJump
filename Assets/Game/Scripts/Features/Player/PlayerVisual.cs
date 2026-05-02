@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Scripts.Features.Player
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerVisual: MonoBehaviour
     {
-        [SerializeField] private PlayerController _playerController;
+        [SerializeField] private PlayerMover _playerMover;
         
         private SpriteRenderer _spriteRenderer;
 
@@ -16,12 +17,12 @@ namespace Game.Scripts.Features.Player
 
         private void OnEnable()
         {
-            _playerController.OnDirectionChanged += FlipVisual;
+            _playerMover.OnDirectionChanged += FlipVisual;
         }
 
         private void OnDisable()
         {
-            _playerController.OnDirectionChanged -= FlipVisual;
+            _playerMover.OnDirectionChanged -= FlipVisual;
         }
 
         private void FlipVisual(float direction)

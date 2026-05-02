@@ -21,8 +21,7 @@ namespace Game.Scripts.Installers
         private void BindPlayerServices()
         {
             Container
-                .Bind<MovementService>()
-                .AsTransient();
+                .BindFactory<Rigidbody2D, Transform, float, MovementService,  MovementService.Factory>();
             
             Container
                 .Bind<JumpService>()

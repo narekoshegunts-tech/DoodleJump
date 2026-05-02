@@ -23,20 +23,19 @@ namespace Game.Scripts.Features.Player.Services
 
         private float _lastDirection;
 
-        [Inject]
-        public void Construct(PlayerInputSystem input, ScreenBoundService screenBoundService)
-        {
-            _input = input;
-            
-            _screenBoundService = screenBoundService;
-            SetScreenBounds();
-        }
-
-        public void SetProperties(Transform transform, Rigidbody2D rigidbody2D, float speed)
+        public MovementService(Rigidbody2D rigidbody2D,Transform transform, float speed)
         {
             _transform = transform;
             _rigidbody2D = rigidbody2D;
             _speed = speed;
+        }
+
+        [Inject]
+        public void Construct(PlayerInputSystem input, ScreenBoundService screenBoundService)
+        {
+            _input = input;
+            _screenBoundService = screenBoundService;
+            SetScreenBounds();
         }
 
         private void SetScreenBounds()
@@ -80,6 +79,10 @@ namespace Game.Scripts.Features.Player.Services
         private void ChangeDirection(float direction)
         {
             OnDirectionChanged?.Invoke(direction);
+        }
+
+        public class Factory : PlaceholderFactory<Rigidbody2D, Transform, float, MovementService>
+        {
         }
     }
 }
