@@ -13,6 +13,8 @@ namespace Game.Scripts.Features.Player.Services
 
         public event Action OnDeath;
 
+        private bool _isDead;
+
         [Inject]
         private void Construct(ScreenBoundService screenBoundService)
         {
@@ -32,6 +34,10 @@ namespace Game.Scripts.Features.Player.Services
 
         public void Update()
         {
+            if (_isDead)
+            {
+                return;
+            }
             if (_transform?.position.y < _minPositionY)
             {
                 Die();
@@ -40,6 +46,7 @@ namespace Game.Scripts.Features.Player.Services
 
         private void Die()
         {
+            _isDead = true;
             OnDeath?.Invoke();
         }
         

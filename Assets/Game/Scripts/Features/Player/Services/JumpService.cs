@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Game.Scripts.Features.Player.Services
 {
@@ -7,7 +8,7 @@ namespace Game.Scripts.Features.Player.Services
         private Rigidbody2D _rigidbody2D;
         private float _jumpForce;
 
-        public void SetProperties(Rigidbody2D rigidbody2D, float jumpForce)
+        public JumpService(Rigidbody2D rigidbody2D, float jumpForce)
         {
             _rigidbody2D = rigidbody2D;
             _jumpForce = jumpForce;
@@ -25,6 +26,10 @@ namespace Game.Scripts.Features.Player.Services
         public void CollidedWithPlatform()
         {
             Jump();
+        }
+
+        public class Factory : PlaceholderFactory<Rigidbody2D, float, JumpService>
+        {
         }
     }
 }

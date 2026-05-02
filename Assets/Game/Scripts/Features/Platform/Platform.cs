@@ -8,9 +8,9 @@ namespace Game.Scripts.Features.Platform
     {
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if(collision.gameObject.TryGetComponent<PlayerController>(out var playerController))
+            if(collision.gameObject.TryGetComponent<PlayerJumper>(out var playerJumper))
             {
-                    playerController.CollidedWithPlatform();
+                    playerJumper.CollidedWithPlatform();
             }
         }
     }

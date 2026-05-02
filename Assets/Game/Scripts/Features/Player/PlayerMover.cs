@@ -15,7 +15,7 @@ namespace Game.Scripts.Features.Player
         public event Action<float> OnDirectionChanged;
         
         [Inject]
-        private void Construct(MovementService.Factory movementServiceFactory, JumpService jumpService, DeathDetectorService deathDetectorServiceService)
+        private void Construct(MovementService.Factory movementServiceFactory)
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             

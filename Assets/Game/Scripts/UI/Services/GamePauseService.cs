@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Game.Scripts.Features.Common
+namespace Game.Scripts.UI.Services
 {
     public class GamePauseService
     {

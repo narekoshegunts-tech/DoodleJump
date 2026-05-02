@@ -10,29 +10,23 @@ namespace Game.Scripts.Features.Player
     public class PlayerController: MonoBehaviour
     {
         [Inject] private SignalBus _signalBus;
-        [SerializeField] private float _jumpForce;
         
-        private JumpService _jumpService;
         private DeathDetectorService _deathDetectorService;
         
         private Rigidbody2D _rigidbody2D;
         
-        private bool _isDead = false;
-        
         private bool _isFalling => _rigidbody2D.velocity.y < 0;
         
         [Inject]
-        private void Construct(JumpService jumpService, DeathDetectorService deathDetectorServiceService)
+        private void Construct(DeathDetectorService deathDetectorServiceService)
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            
-            _jumpService = jumpService;
+
             _deathDetectorService = deathDetectorServiceService;
         }
 
         private void Start()
         {
-            InitJumpService();
             InitDeathDetectorService();
         }
 
@@ -41,16 +35,9 @@ namespace Game.Scripts.Features.Player
             _deathDetectorService.SetProperties(transform);
         }
         
-        private void InitJumpService()
-        {
-            _jumpService.SetProperties(_rigidbody2D, _jumpForce);
-        }
         
         private void Update()
         {
-            if (_isDead)
-                return;
-            
             if (_isFalling)
             {
                 _deathDetectorService.Update();
@@ -72,13 +59,7 @@ namespace Game.Scripts.Features.Player
 
         private void Die()
         {
-            _isDead = true;
             _signalBus.Fire<PlayerDiedSignal>();
-        }
-
-        public void CollidedWithPlatform()
-        {
-            _jumpService.CollidedWithPlatform();
         }
 
     }

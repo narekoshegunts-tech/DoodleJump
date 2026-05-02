@@ -24,8 +24,11 @@ namespace Game.Scripts.Installers
                 .BindFactory<Rigidbody2D, Transform, float, MovementService,  MovementService.Factory>();
             
             Container
-                .Bind<JumpService>()
-                .AsTransient();
+                .BindFactory<Rigidbody2D, float, JumpService, JumpService.Factory>();
+            
+            // Container
+            //     .Bind<JumpService>()
+            //     .AsTransient();
 
             Container
                 .Bind<DeathDetectorService>()
