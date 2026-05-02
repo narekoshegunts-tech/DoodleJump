@@ -1,4 +1,6 @@
-﻿using Game.Scripts.Features.Platform;
+﻿using System.Collections.Generic;
+using Game.Scripts.Features.Platform.Services;
+using UnityEngine;
 using Zenject;
 
 namespace Game.Scripts.Installers
@@ -8,6 +10,20 @@ namespace Game.Scripts.Installers
         public override void InstallBindings()
         {
             BindPlatformRandomSpawnStrategyFactory();
+            BindPlatformPoolFactory();
+            BindPlatformRecyclerService();
+        }
+
+        private void BindPlatformRecyclerService()
+        {
+            Container
+                .BindFactory<List<GameObject>, RandomPlatformSpawnStrategy, PlatformRecyclerService, PlatformRecyclerService.Factory>();
+        }
+
+        private void BindPlatformPoolFactory()
+        {
+            Container
+                .BindFactory<GameObject, Transform, int, PlatformPool, PlatformPool.Factory>();
         }
 
         private void BindPlatformRandomSpawnStrategyFactory()

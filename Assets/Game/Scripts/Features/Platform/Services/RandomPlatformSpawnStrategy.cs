@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Game.Scripts.Features.Platform
+namespace Game.Scripts.Features.Platform.Services
 {
     public class RandomPlatformSpawnStrategy
     {
